@@ -15,54 +15,61 @@
 			<button class="number" onclick="AddNumbers(7)" value="7">7</button>
 			<button class="number" onclick="AddNumbers(8)" value="8">8</button>
 			<button class="number" onclick="AddNumbers(9)" value="9">9</button>
-			<button class="operator">/</button>
-			<button class="number" onclick="Calculate(4)" value="4">4</button>
+			<button class="operator" onclick="Calculate(this.innerText)">/</button>
+			<button class="number" onclick="AddNumbers(4)" value="4">4</button>
 			<button class="number" onclick="AddNumbers(5)" value="5">5</button>
 			<button class="number" onclick="AddNumbers(6)" value="6">6</button>
-			<button class="operator">*</button>
+			<button class="operator" onclick="Calculate(this.innerText)">*</button>
 			<button class="number" onclick="AddNumbers(1)" value="1">1</button>
 			<button class="number" onclick="AddNumbers(2)" value="2">2</button>
 			<button class="number" onclick="AddNumbers(3)" value="3">3</button>
-			<button class="operator">-</button>
+			<button class="operator" onclick="Calculate(this.innerText)">-</button>
 			<button class="number" onclick="AddNumbers(0)" value="0">0</button>
 			<button class="number">.</button>
 			<button class="equal">=</button>
-			<button class="operator">+</button>
+			<button class="operator" onclick="Calculate(this.innerText)">+</button>
 			<button class="clear">C</button>
 		</div>
 	</div>
 
 	<script type="text/javascript">
 
-		const numbers = [0, 0]
-
 		let currentNumber = 0;
-		let secondNumber = 0;
+		let savedNumber = 0;
+		let firstClick = false;
+		let setOperator = null;
 
 		const AddNumbers = (value) => {
 
 			let getInputValueString = document.getElementById("inputContent").value;
 
-			if (getInputValueString == "0") {
+			if (firstClick == true) {
+				document.getElementById("inputContent").value = "";
+				firstClick = false
+			}
+
+			if (firstClick == true || getInputValueString == "0") {
 				document.getElementById("inputContent").value = value;
 				currentNumber = value.toString();
-				console.log(currentNumber)
+				console.log("currentLine1:" + currentNumber)
 			} else {
 				document.getElementById("inputContent").value += value;
 				currentNumber += value;
-				console.log(currentNumber)
+				console.log("currentLine2:" + currentNumber)
 			}
 		}
 
-		const Calculate = (value, typeOfCalc) => {
-
+		const Calculate = (calcType) => {
+			firstClick ? false : firstClick = true;
+			savedNumber = currentNumber;
+			setOperator = calcType;
+			console.log("saved:" + savedNumber)
+			console.log(setOperator)
+			currentNumber = "";
 		}
 
-
-
-
-
 	</script>
+
 </body>
 
 </html>

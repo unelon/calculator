@@ -4,10 +4,14 @@
 	-moz-box-sizing: border-box;
 }
 
+body {
+	background-color: black;
+}
+
 .calculator {
 	width: 234px;
-	background-color: #eee;
-	border: 1px solid #ccc;
+	background-color: #292d3e;
+	border: 1px solid #1f2233;
 	padding: 10px;
 	border-radius: 5px;
 	margin: 50px auto;
@@ -19,9 +23,10 @@
 	font-size: 24px;
 	text-align: right;
 	border: none;
-	background-color: #fff;
+	background-color: #1f2233;
 	padding: 5px;
 	border-radius: 5px;
+	color: #fff;
 }
 
 .buttons {
@@ -36,26 +41,31 @@
 	height: 50px;
 	font-size: 24px;
 	border: none;
-	background-color: #fff;
+	background-color: #292d3e;
 	border-radius: 5px;
 	margin-right: 0;
 	margin-bottom: 5px;
 	cursor: pointer;
+	color: #fff;
 }
 
 .number:hover,
 .operator:hover,
 .equal:hover,
 .clear:hover {
-	background-color: #ccc;
+	background-color: #404462;
 }
 
 .equal {
-	background-color: #ffc107;
+	background-color: #2c89c9;
 	color: #fff;
 }
 
 .clear {
 	background-color: #dc3545;
 	color: #fff;
+}
+
+#inputContent {
+	text-align: right;
 }
