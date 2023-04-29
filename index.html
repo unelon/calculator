@@ -38,6 +38,7 @@
 		let savedNumber = 0;
 		let firstClick = false;
 		let setOperator = null;
+		let valueHasBeenAdded = false;
 
 		const AddNumbers = (value) => {
 
@@ -60,12 +61,39 @@
 		}
 
 		const Calculate = (calcType) => {
-			firstClick ? false : firstClick = true;
-			savedNumber = currentNumber;
-			setOperator = calcType;
-			console.log("saved:" + savedNumber)
-			console.log(setOperator)
-			currentNumber = "";
+
+			if (valueHasBeenAdded == true) {
+
+				switch (calcType) {
+					case "+":
+						console.log("det er en +");
+						let result = parseInt(savedNumber) + parseInt(currentNumber);
+						document.getElementById("inputContent").value = result;
+						break;
+					case "-":
+						console.log("det er en -");
+						break;
+					case "*":
+						console.log("det er en *");
+						break;
+					case "/":
+						console.log("det er en /");
+						break;
+					default:
+					// code block
+				}
+
+			}
+
+			else {
+				firstClick ? false : firstClick = true;
+				savedNumber = currentNumber;
+				setOperator = calcType;
+				console.log("saved:" + savedNumber)
+				console.log(setOperator)
+				currentNumber = "";
+				valueHasBeenAdded = true;
+			}
 		}
 
 	</script>
