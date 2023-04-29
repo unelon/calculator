@@ -12,19 +12,19 @@
 			<input type="number" id="inputContent" type="text" value="0" readonly>
 		</div>
 		<div class="buttons">
-			<button class="number" onclick="Calculate(7)" value="7">7</button>
-			<button class="number" onclick="Calculate(8)" value="8">8</button>
-			<button class="number" onclick="Calculate(9)" value="9">9</button>
+			<button class="number" onclick="AddNumbers(7)" value="7">7</button>
+			<button class="number" onclick="AddNumbers(8)" value="8">8</button>
+			<button class="number" onclick="AddNumbers(9)" value="9">9</button>
 			<button class="operator">/</button>
 			<button class="number" onclick="Calculate(4)" value="4">4</button>
-			<button class="number" onclick="Calculate(5)" value="5">5</button>
-			<button class="number" onclick="Calculate(6)" value="6">6</button>
+			<button class="number" onclick="AddNumbers(5)" value="5">5</button>
+			<button class="number" onclick="AddNumbers(6)" value="6">6</button>
 			<button class="operator">*</button>
-			<button class="number" onclick="Calculate(1)" value="1">1</button>
-			<button class="number" onclick="Calculate(2)" value="2">2</button>
-			<button class="number" onclick="Calculate(3)" value="3">3</button>
+			<button class="number" onclick="AddNumbers(1)" value="1">1</button>
+			<button class="number" onclick="AddNumbers(2)" value="2">2</button>
+			<button class="number" onclick="AddNumbers(3)" value="3">3</button>
 			<button class="operator">-</button>
-			<button class="number" onclick="Calculate(0)" value="0">0</button>
+			<button class="number" onclick="AddNumbers(0)" value="0">0</button>
 			<button class="number">.</button>
 			<button class="equal">=</button>
 			<button class="operator">+</button>
@@ -34,24 +34,32 @@
 
 	<script type="text/javascript">
 
-		let firstNumber = 0;
+		const numbers = [0, 0]
+
+		let currentNumber = 0;
 		let secondNumber = 0;
 
-
-		const Calculate = (value) => {
+		const AddNumbers = (value) => {
 
 			let getInputValueString = document.getElementById("inputContent").value;
-			let getInputValue = parseInt(getInputValueString)
-			const intValue = parseInt(value)
 
-			if (getInputValue == 0) {
-				document.getElementById("inputContent").value = intValue;
-				firstNumber = intValue;
+			if (getInputValueString == "0") {
+				document.getElementById("inputContent").value = value;
+				currentNumber = value.toString();
+				console.log(currentNumber)
 			} else {
-				firstNumber += intValue;
-				document.getElementById("inputContent").value = firstNumber
+				document.getElementById("inputContent").value += value;
+				currentNumber += value;
+				console.log(currentNumber)
 			}
 		}
+
+		const Calculate = (value, typeOfCalc) => {
+
+		}
+
+
+
 
 
 	</script>
