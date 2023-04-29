@@ -67,17 +67,17 @@
 				switch (calcType) {
 					case "+":
 						console.log("det er en +");
-						let result = parseInt(savedNumber) + parseInt(currentNumber);
-						document.getElementById("inputContent").value = result;
+						document.getElementById("inputContent").value = parseInt(savedNumber) + parseInt(currentNumber);
 						break;
 					case "-":
+						document.getElementById("inputContent").value = parseInt(savedNumber) - parseInt(currentNumber);
 						console.log("det er en -");
 						break;
 					case "*":
-						console.log("det er en *");
+						document.getElementById("inputContent").value = parseInt(savedNumber) * parseInt(currentNumber);
 						break;
 					case "/":
-						console.log("det er en /");
+						document.getElementById("inputContent").value = parseInt(savedNumber) / parseInt(currentNumber);
 						break;
 					default:
 					// code block
