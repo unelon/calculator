@@ -36,20 +36,23 @@
 
 		let currentNumber = 0;
 		let savedNumber = 0;
-		let firstClick = false;
+		let addNumbers = false;
 		let setOperator = null;
 		let valueHasBeenAdded = false;
 
 		const AddNumbers = (value) => {
 
-			let getInputValueString = document.getElementById("inputContent").value;
+			/* Get input value */
+			let inputValue = document.getElementById("inputContent").value;
 
-			if (firstClick == true) {
+			/* Set 0 in input at first click */
+			if (addNumbers == true) {
 				document.getElementById("inputContent").value = "";
-				firstClick = false
+				addNumbers = false
 			}
 
-			if (firstClick == true || getInputValueString == "0") {
+
+			if (inputValue == "0") {
 				document.getElementById("inputContent").value = value;
 				currentNumber = value.toString();
 				console.log("currentLine1:" + currentNumber)
@@ -86,7 +89,7 @@
 			}
 
 			else {
-				firstClick ? false : firstClick = true;
+				addNumbers ? false : addNumbers = true;
 				savedNumber = currentNumber;
 				setOperator = calcType;
 				console.log("saved:" + savedNumber)
