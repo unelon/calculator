@@ -39,6 +39,7 @@
 		let setOperator = null;
 		let savedNumber = 0;
 		let valueHasBeenAdded = false;
+		let resultClicked = false;
 
 		const ClearInputValue = () => {
 			document.getElementById("inputContent").value = "";
@@ -52,6 +53,10 @@
 
 			if (firstClick == true && valueHasBeenAdded == true) {
 
+			}
+
+			if (resultClicked == true) {
+				ClearInputValue();
 			}
 
 			if (firstClick == true) {
@@ -91,6 +96,10 @@
 					if (setOperator == "/") {
 						document.getElementById("inputContent").value = parseInt(savedNumber) / parseInt(currentNumber);
 					}
+
+					firstClick = false;
+					savedNumber = "";
+
 				}
 
 				switch (calcType) {
