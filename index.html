@@ -26,7 +26,7 @@
 			<button class="operator" onclick="Calculate(this.innerText)">-</button>
 			<button class="number" onclick="AddNumbers(0)" value="0">0</button>
 			<button class="number">.</button>
-			<button class="equal">=</button>
+			<button class="equal" onclick="Calculate(this.innerText)">=</button>
 			<button class="operator" onclick="Calculate(this.innerText)">+</button>
 			<button class="clear">C</button>
 		</div>
@@ -34,38 +34,64 @@
 
 	<script type="text/javascript">
 
+		let firstClick = false;
 		let currentNumber = 0;
-		let savedNumber = 0;
-		let addNumbers = false;
 		let setOperator = null;
+		let savedNumber = 0;
 		let valueHasBeenAdded = false;
+
+		const ClearInputValue = () => {
+			document.getElementById("inputContent").value = "";
+		}
+
+		const AppendInputValue = (value) => {
+			document.getElementById("inputContent").value += value;
+		}
 
 		const AddNumbers = (value) => {
 
-			/* Get input value */
-			let inputValue = document.getElementById("inputContent").value;
+			if (firstClick == true && valueHasBeenAdded == true) {
 
-			/* Set 0 in input at first click */
-			if (addNumbers == true) {
-				document.getElementById("inputContent").value = "";
-				addNumbers = false
 			}
 
+			if (firstClick == true) {
+				AppendInputValue(value);
+				currentNumber = currentNumber + value.toString();
+				console.log("secondclick " + currentNumber)
+			}
 
-			if (inputValue == "0") {
-				document.getElementById("inputContent").value = value;
+			/* Check if first click and set first click to true */
+			if (firstClick == false) {
+				ClearInputValue();
+				AppendInputValue(value);
 				currentNumber = value.toString();
-				console.log("currentLine1:" + currentNumber)
-			} else {
-				document.getElementById("inputContent").value += value;
-				currentNumber += value;
-				console.log("currentLine2:" + currentNumber)
+				firstClick = true;
+				console.log("firstclick " + currentNumber)
 			}
+
 		}
 
 		const Calculate = (calcType) => {
 
+			const operator = calcType;
+
 			if (valueHasBeenAdded == true) {
+
+				const ShowResult = () => {
+
+					if (setOperator == "+") {
+						document.getElementById("inputContent").value = parseInt(savedNumber) + parseInt(currentNumber);
+					}
+					if (setOperator == "-") {
+						document.getElementById("inputContent").value = parseInt(savedNumber) - parseInt(currentNumber);
+					}
+					if (setOperator == "*") {
+						document.getElementById("inputContent").value = parseInt(savedNumber) * parseInt(currentNumber);
+					}
+					if (setOperator == "/") {
+						document.getElementById("inputContent").value = parseInt(savedNumber) / parseInt(currentNumber);
+					}
+				}
 
 				switch (calcType) {
 					case "+":
@@ -83,19 +109,24 @@
 						document.getElementById("inputContent").value = parseInt(savedNumber) / parseInt(currentNumber);
 						break;
 					default:
-					// code block
+						// Runes if = button is clicked
+						console.log("du trykkede på =")
+						ShowResult();
 				}
 
 			}
 
 			else {
-				addNumbers ? false : addNumbers = true;
+				firstClick = false;
 				savedNumber = currentNumber;
 				setOperator = calcType;
-				console.log("saved:" + savedNumber)
-				console.log(setOperator)
 				currentNumber = "";
 				valueHasBeenAdded = true;
+
+
+
+				console.log("saved:" + savedNumber)
+				console.log(setOperator)
 			}
 		}
 
