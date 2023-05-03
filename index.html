@@ -7,9 +7,10 @@
 </head>
 
 <body>
+
 	<div class="calculator">
 		<div class="display">
-			<input type="number" id="inputContent" type="text" value="0" readonly>
+			<input type="number" id="inputContent" type="text" value="currentNumber" readonly>
 		</div>
 		<div class="buttons">
 			<button class="number" onclick="AddNumbers(7)" value="7">7</button>
@@ -34,108 +35,65 @@
 
 	<script type="text/javascript">
 
-		let firstClick = false;
-		let currentNumber = 0;
-		let setOperator = null;
-		let savedNumber = 0;
-		let valueHasBeenAdded = false;
-		let resultClicked = false;
-
-		const ClearInputValue = () => {
-			document.getElementById("inputContent").value = "";
+		const Logger = (data) => {
+			console.log(data)
 		}
 
-		const AppendInputValue = (value) => {
-			document.getElementById("inputContent").value += value;
+		let currentValue = "";
+		let savedValue = "";
+		let result = "";
+		let operator = "";
+
+		/* Small functions */
+		const ConvertToString = (value) => {
+			value.toString();
 		}
 
+		const ConvertToInt = (string) => {
+			parseInt(string);
+		}
+
+		const UpdateInput = (value) => {
+			value ? document.getElementById("inputContent").value += value : document.getElementById("inputContent").value = "";
+		}
+
+		const SetValue = (value) => {
+			currentValue = currentValue += value;
+			Logger("setvalue:" + currentValue);
+		}
+
+		const SaveValue = () => {
+			savedValue = currentValue;
+		}
+
+		const ClearCurrentValue = () => {
+			currentValue = "";
+		}
+
+		const ClearSavedValue = () => {
+			savedValue = 0;
+		}
+
+		const ShowResult = (currentValue, savedValue) => {
+			if (currentValue && savedValue) {
+				console.log("current:" + currentValue + "saved:" + savedValue)
+			}
+		}
+
+		/* Main functions */
 		const AddNumbers = (value) => {
-
-			if (firstClick == true && valueHasBeenAdded == true) {
-
-			}
-
-			if (resultClicked == true) {
-				ClearInputValue();
-			}
-
-			if (firstClick == true) {
-				AppendInputValue(value);
-				currentNumber = currentNumber + value.toString();
-				console.log("secondclick " + currentNumber)
-			}
-
-			/* Check if first click and set first click to true */
-			if (firstClick == false) {
-				ClearInputValue();
-				AppendInputValue(value);
-				currentNumber = value.toString();
-				firstClick = true;
-				console.log("firstclick " + currentNumber)
-			}
-
+			SetValue(value);
+			UpdateInput();
+			UpdateInput(currentValue);
 		}
 
-		const Calculate = (calcType) => {
+		const Calculate = () => {
 
-			const operator = calcType;
-
-			if (valueHasBeenAdded == true) {
-
-				const ShowResult = () => {
-
-					if (setOperator == "+") {
-						document.getElementById("inputContent").value = parseInt(savedNumber) + parseInt(currentNumber);
-					}
-					if (setOperator == "-") {
-						document.getElementById("inputContent").value = parseInt(savedNumber) - parseInt(currentNumber);
-					}
-					if (setOperator == "*") {
-						document.getElementById("inputContent").value = parseInt(savedNumber) * parseInt(currentNumber);
-					}
-					if (setOperator == "/") {
-						document.getElementById("inputContent").value = parseInt(savedNumber) / parseInt(currentNumber);
-					}
-
-					firstClick = false;
-					savedNumber = "";
-
-				}
-
-				switch (calcType) {
-					case "+":
-						console.log("det er en +");
-						document.getElementById("inputContent").value = parseInt(savedNumber) + parseInt(currentNumber);
-						break;
-					case "-":
-						document.getElementById("inputContent").value = parseInt(savedNumber) - parseInt(currentNumber);
-						console.log("det er en -");
-						break;
-					case "*":
-						document.getElementById("inputContent").value = parseInt(savedNumber) * parseInt(currentNumber);
-						break;
-					case "/":
-						document.getElementById("inputContent").value = parseInt(savedNumber) / parseInt(currentNumber);
-						break;
-					default:
-						// Runes if = button is clicked
-						console.log("du trykkede på =")
-						ShowResult();
-				}
-
-			}
-
-			else {
-				firstClick = false;
-				savedNumber = currentNumber;
-				setOperator = calcType;
-				currentNumber = "";
-				valueHasBeenAdded = true;
-
-
-
-				console.log("saved:" + savedNumber)
-				console.log(setOperator)
+			/* Check if number is saved */
+			if (savedValue === "") {
+				savedValue = currentValue;
+				Logger("savedvalue:" + savedValue);
+				ClearCurrentValue();
 			}
 		}
 
