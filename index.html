@@ -42,7 +42,7 @@
 		let currentValue = "";
 		let savedValue = "";
 		let result = "";
-		let operator = "";
+		let currentOperator = "";
 
 		/* Small functions */
 		const ConvertToString = (value) => {
@@ -74,6 +74,11 @@
 			savedValue = 0;
 		}
 
+		const SetOperator = (operator) => {
+			currentOperator = operator;
+			Logger(currentOperator)
+		}
+
 		const ShowResult = (currentValue, savedValue) => {
 			if (currentValue && savedValue) {
 				console.log("current:" + currentValue + "saved:" + savedValue)
@@ -87,13 +92,20 @@
 			UpdateInput(currentValue);
 		}
 
-		const Calculate = () => {
+		const Calculate = (operator) => {
 
 			/* Check if number is saved */
 			if (savedValue === "") {
 				savedValue = currentValue;
 				Logger("savedvalue:" + savedValue);
+				SetOperator(operator)
 				ClearCurrentValue();
+			}
+
+			/* Calcute if savedvalue and currentvalue */
+			if (savedValue != "" && currentValue != "") {
+				Logger("i want to calculate " + savedValue);
+				Logger("and " + currentValue);
 			}
 		}
 
