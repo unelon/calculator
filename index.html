@@ -79,7 +79,7 @@
 			Logger(currentOperator)
 		}
 
-		const ShowResult = (currentValue, savedValue) => {
+		const ShowResult = () => {
 			if (currentValue && savedValue) {
 				console.log("current:" + currentValue + "saved:" + savedValue)
 			}
@@ -94,7 +94,7 @@
 
 		const Calculate = (operator) => {
 
-			/* Check if number is saved */
+			/* Check if number is saved, if not then add current number to saved number and clear currentNumber string */
 			if (savedValue === "") {
 				savedValue = currentValue;
 				Logger("savedvalue:" + savedValue);
@@ -104,8 +104,8 @@
 
 			/* Calcute if savedvalue and currentvalue */
 			if (savedValue != "" && currentValue != "") {
-				Logger("i want to calculate " + savedValue);
-				Logger("and " + currentValue);
+				Logger("i want to calculate ");
+				ShowResult();
 			}
 		}
 
