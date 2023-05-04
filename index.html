@@ -57,9 +57,9 @@
 			value ? document.getElementById("inputContent").value += value : document.getElementById("inputContent").value = "";
 		}
 
-		const SetValue = (value) => {
+		const SetCurrentValue = (value) => {
 			currentValue = currentValue += value;
-			Logger("setvalue:" + currentValue);
+			Logger("set current value:" + currentValue);
 		}
 
 		const SaveValue = () => {
@@ -81,13 +81,13 @@
 
 		const ShowResult = () => {
 			if (currentValue && savedValue) {
-				console.log("current:" + currentValue + "saved:" + savedValue)
+				console.log("current: " + currentValue + " saved: " + savedValue)
 			}
 		}
 
 		/* Main functions */
 		const AddNumbers = (value) => {
-			SetValue(value);
+			SetCurrentValue(value);
 			UpdateInput();
 			UpdateInput(currentValue);
 		}
