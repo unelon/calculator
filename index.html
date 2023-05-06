@@ -10,7 +10,7 @@
 
 	<div class="calculator">
 		<div class="display">
-			<input type="number" id="inputContent" type="text" value="currentNumber" readonly>
+			<input type="number" id="inputContent" type="text" value="0" readonly>
 		</div>
 		<div class="buttons">
 			<button class="number" onclick="AddNumbers(7)" value="7">7</button>
@@ -25,11 +25,11 @@
 			<button class="number" onclick="AddNumbers(2)" value="2">2</button>
 			<button class="number" onclick="AddNumbers(3)" value="3">3</button>
 			<button class="operator" onclick="Calculate(this.innerText)">-</button>
-			<button class="number" onclick="AddNumbers(0)" value="0">0</button>
-			<button class="number">.</button>
-			<button class="equal" onclick="Calculate(this.innerText)">=</button>
+			<button class="number" style="width: 158px" onclick="AddNumbers(0)" value="0">0</button>
+			<!--<button class="number">.</button>-->
 			<button class="operator" onclick="Calculate(this.innerText)">+</button>
 			<button class="clear" onclick="Refresh()">C</button>
+			<button class="equal" style="width: 158px" onclick="Calculate(this.innerText)">=</button>
 		</div>
 	</div>
 
@@ -162,6 +162,7 @@
 			}
 		}
 
+		/* Refresh page / clear all data */
 		const Refresh = () => {
 			location.reload();
 		}

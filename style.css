@@ -49,13 +49,12 @@ body {
 	margin-bottom: 5px;
 	cursor: pointer;
 	color: #fff;
+	background-color: #404462;
 }
 
 .number:hover,
-.operator:hover,
-.equal:hover,
-.clear:hover {
-	background-color: #404462;
+.operator:hover {
+	background-color: #505682;
 }
 
 .equal {
@@ -63,9 +62,17 @@ body {
 	color: #fff;
 }
 
+.equal:hover {
+	background-color: #2a9ce8;
+}
+
 .clear {
 	background-color: #dc3545;
 	color: #fff;
+}
+
+.clear:hover {
+	background-color: #ff3c50;
 }
 
 #inputContent {
