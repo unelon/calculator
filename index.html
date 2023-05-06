@@ -109,6 +109,12 @@
 
 		const Calculate = (operator) => {
 
+			if (calcExecuted) {
+				savedValue = result;
+				SetOperator(operator);
+				calcExecuted = false;
+			}
+
 			/* Check if number is saved, if not then add current number to saved number and clear currentNumber string */
 			if (savedValue === "") {
 				savedValue = currentValue;
@@ -123,8 +129,6 @@
 				LogResult();
 				const save = ConvertToInt(savedValue);
 				const current = ConvertToInt(currentValue);
-
-				let result;
 
 				switch (currentOperator) {
 					case '+':
