@@ -39,29 +39,43 @@
 			console.log(data)
 		}
 
+		/* Variable definition:
+
+		currentValue: 		What the input field shows
+		savedValue: 			Saves the value after clicking on + - * or /
+		result = "";			The result value after two numbers have been added and an operator or = has been clicked
+		currentOperator: 	Holds either + - * or / after one has been clicked
+		calcExecuted: 		Is only true if a calculation has been resulted. Eg. 2 + 2 + or 4 - 4 =.
+
+		*/
+
 		let currentValue = "";
 		let savedValue = "";
 		let result = "";
 		let currentOperator = "";
+		let calcExecuted = false;
 
-		/* Small functions */
+		/* Convert values */
 		const ConvertToString = (value) => {
-			value.toString();
+			return value.toString();
 		}
 
 		const ConvertToInt = (string) => {
-			parseInt(string);
+			return parseInt(string);
 		}
 
+		/* Update numbers shown */
 		const UpdateInput = (value) => {
 			value ? document.getElementById("inputContent").value += value : document.getElementById("inputContent").value = "";
 		}
 
+		/* Current value being type */
 		const SetCurrentValue = (value) => {
 			currentValue = currentValue += value;
 			Logger("set current value:" + currentValue);
 		}
 
+		/* Saved current value being type into variable */
 		const SaveValue = () => {
 			savedValue = currentValue;
 		}
@@ -71,21 +85,22 @@
 		}
 
 		const ClearSavedValue = () => {
-			savedValue = 0;
+			savedValue = "";
 		}
 
+		/* Save (+ - * or /) as operator when clicked */
 		const SetOperator = (operator) => {
 			currentOperator = operator;
 			Logger(currentOperator)
 		}
 
-		const ShowResult = () => {
+		const LogResult = () => {
 			if (currentValue && savedValue) {
-				console.log("current: " + currentValue + " saved: " + savedValue)
+				console.log("current: " + currentValue + " " + currentOperator + " saved: " + savedValue)
 			}
 		}
 
-		/* Main functions */
+		/* MAIN FUNCTION */
 		const AddNumbers = (value) => {
 			SetCurrentValue(value);
 			UpdateInput();
@@ -105,7 +120,36 @@
 			/* Calcute if savedvalue and currentvalue */
 			if (savedValue != "" && currentValue != "") {
 				Logger("i want to calculate ");
-				ShowResult();
+				LogResult();
+				const save = ConvertToInt(savedValue);
+				const current = ConvertToInt(currentValue);
+
+				let result;
+
+				switch (currentOperator) {
+					case '+':
+						result = save + current;
+						Logger(result)
+						break;
+					case '-':
+						result = save - current;
+						Logger(result)
+						break;
+					case '*':
+						result = save * current;
+						Logger(result)
+						break;
+					case '/':
+						result = save / current;
+						Logger(result)
+						break;
+				}
+
+				ClearCurrentValue();
+				ClearSavedValue();
+				UpdateInput("");
+				UpdateInput(ConvertToString(result));
+				calcExecuted = true;
 			}
 		}
 
