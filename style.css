@@ -27,6 +27,8 @@ body {
 	padding: 5px;
 	border-radius: 5px;
 	color: #fff;
+	padding-right: 0;
+	padding-left: 16px;
 }
 
 .buttons {
